@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage ('Print hello') {
             steps {
-                scripts {
+                script {
                     echo 'hello from jenkins pipeline'
                     echo 'test d\'un simple pipeline'
                     echo "test post condition >> /test/issue"
