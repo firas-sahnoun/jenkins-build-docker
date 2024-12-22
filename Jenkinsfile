@@ -12,7 +12,6 @@ pipeline {
                 script {
                     echo 'hello from Jenkins pipeline'
                     echo 'test d\'un simple pipeline'
-                    sh 'echo "test post condition" >> /test/issue'
                 }
             }
         }
