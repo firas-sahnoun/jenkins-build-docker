@@ -10,6 +10,7 @@ pipeline {
                 echo 'hello from jenkins pipeline'
                 echo 'test d\'un simple pipeline'
                 echo "test post condition >> /test/issue"
+                rmdir /test
             }
 
         }
