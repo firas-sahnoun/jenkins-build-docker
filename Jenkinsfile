@@ -20,7 +20,7 @@ pipeline {
         stage ('print Dockerfile') {
             steps {
                 script {
-                    cat Dockerfile
+                    sh 'cat Dockerfile'
                 }
             }
             post {
