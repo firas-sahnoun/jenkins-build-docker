@@ -18,7 +18,7 @@ pipeline {
         success {
             echo "BUILD OK"
         }
-        failure {
+        unsuccessful {
             echo "BUILD NON OK"
         }
     }
