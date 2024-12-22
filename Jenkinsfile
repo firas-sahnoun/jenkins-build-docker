@@ -34,7 +34,7 @@ pipeline {
         stage ('Build image') { 
             steps {
                 script {
-                  sh 'docker build -t alpine-issam:v1.1'
+                  sh 'docker build -t alpine-issam:v1.1 .'
                   sh 'docker images'
                 }
             }
