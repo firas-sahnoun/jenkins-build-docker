@@ -23,6 +23,11 @@ pipeline {
                     cat Dockerfile
                 }
             }
+            post {
+                success {
+                    echo 'le dockerfile est affiché'
+                }
+            }
         }
     }
     post {
