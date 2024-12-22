@@ -1,79 +1,81 @@
-
 pipeline {
-    agent {
-        label 'linux-docker'
-    }
+    agent { label 'linux-docker' }
 
     environment {
-                DOCKER_LOGIN = credentials('docker-login')
-            }
+        DOCKER_LOGIN = credentials('docker-login')
+    }
 
     stages {
-        stage ('Print hello') {
+        // 📌 Étape 1 : Affichage d'un message simple
+        stage('Print hello') {
             steps {
                 script {
-                    echo 'hello from jenkins pipeline'
+                    echo 'hello from Jenkins pipeline'
                     echo 'test d\'un simple pipeline'
-                    echo "test post condition >> /test/issue"
-                } // script
-                
-            } // steps
+                    sh 'echo "test post condition" >> /test/issue'
+                }
+            }
+        }
 
-        }// stage
-
-        stage ('print Dockerfile') {
+        // 📌 Étape 2 : Affichage du Dockerfile
+        stage('Print Dockerfile') {
             steps {
                 script {
                     sh 'cat Dockerfile'
                 }
-            } //steps
+            }
             post {
                 success {
-                    echo 'le dockerfile est affiché'
-                }
-            } //post
-        } //stage
-
-        // Build Alpine image
-        stage ('Build image') { 
-            steps {
-                script {
-                  sh 'docker build -t alpine-issam:v1.1 .'
-                  sh 'docker images'
+                    echo 'Le Dockerfile a été affiché avec succès'
                 }
             }
-        }//stage
+        }
 
-        stage ('Tag image') { 
+        // 📌 Étape 3 : Construction de l'image Docker
+        stage('Build image') { 
             steps {
                 script {
-                  sh 'docker tag alpine-issam:v1.1 imejri/alpine-issam:v1.1'
-                  sh 'docker images'
+                    sh 'docker build -t alpine-issam:v1.1 .'
+                    sh 'docker images'
                 }
             }
-        }//stage
+        }
 
-        stage ('Push image') { 
+        // 📌 Étape 4 : Tag de l'image Docker
+        stage('Tag image') { 
             steps {
                 script {
-                // login to dockerhub
-                  sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW'             
+                    sh 'docker tag alpine-issam:v1.1 imejri/alpine-issam:v1.1'
+                    sh 'docker images'
                 }
-                post {
-                    success {
-                        // Si le login est ok je pousse mon image
+            }
+        }
+
+        // 📌 Étape 5 : Pousser l'image sur DockerHub
+        stage('Push image') { 
+            steps {
+                script {
+                    // Connexion à DockerHub
+                    sh 'docker login -u $DOCKER_LOGIN_USR -p $DOCKER_LOGIN_PSW'
+                }
+            }
+            post {
+                success {
+                    script {
                         sh 'docker push imejri/alpine-issam:v1.1'
                     }
-                } //post
-            } //steps
-        }//stage
+                }
+            }
+        }
     }
+
+    // 📌 Post-actions après le pipeline
     post {
         success {
-            echo "BUILD OK"
+            echo "✅ BUILD OK"
         }
         failure {
-            echo "BUILD NON OK"
+            echo "❌ BUILD NON OK"
         }
     }
 }
