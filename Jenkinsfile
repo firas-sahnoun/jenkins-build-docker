@@ -9,6 +9,7 @@ pipeline {
             steps {
                 echo 'hello from jenkins pipeline'
                 echo 'test d\'un simple pipeline'
+                ls -l
             }
 
         }
