@@ -22,13 +22,23 @@ pipeline {
                 script {
                     sh 'cat Dockerfile'
                 }
-            }
+            } //steps
             post {
                 success {
                     echo 'le dockerfile est affiché'
                 }
+            } //post
+        } //stage
+
+        // Build Alpine image
+        stage ('Build image') { 
+            steps {
+                script {
+                  sh 'docker build -t alpine-issam:v1.1'
+                  sh 'docker images'
+                }
             }
-        }
+        }//stage
     }
     post {
         success {
