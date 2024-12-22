@@ -66,6 +66,38 @@ pipeline {
                 }
             }
         }
+        // 📌 Étape 6 : Démarrer le conteneur HTTPD
+        stage('Run HTTPD container') {
+            steps {
+                script {
+                    echo '🚀 Démarrage du conteneur HTTPD...'
+                    sh '''
+                    docker run -d \
+                        --name webserver \
+                        -p 8000:80 \
+                        imejri/httpd-issam:v1.1
+                    '''
+                }
+            }
+            post {
+                success {
+                    script {
+                        SERVER_FQDN = sh(
+                        script: 'hostname -f',
+                        returnStdout: true
+                    ).trim()
+                    echo '✅ Le conteneur HTTPD est démarré avec succès !'
+                    echo "Le FQDN du serveur est : ${SERVER_FQDN}"
+                    echo "Le serveur est accessible depuis l'url: ${SERVER_FQDN}:8000"
+                    }
+
+                }
+                failure {
+                    echo '❌ Échec du démarrage du conteneur HTTPD.'
+                }
+            }
+        }
+
     }
 
     // 📌 Post-actions après le pipeline
