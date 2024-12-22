@@ -88,7 +88,7 @@ pipeline {
                     ).trim()
                     echo '✅ Le conteneur HTTPD est démarré avec succès !'
                     echo "Le FQDN du serveur est : ${SERVER_FQDN}"
-                    echo "Le serveur est accessible depuis l'url: ${SERVER_FQDN}:8000"
+                    echo "Le serveur est accessible depuis l'url: http://${SERVER_FQDN}:8000"
                     }
 
                 }
