@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo 'hello from jenkins pipeline'
                 echo 'test d\'un simple pipeline'
-                ls -l
+                echo "test post condition >> /test/issue"
             }
 
         }
@@ -18,7 +18,7 @@ pipeline {
         success {
             echo "BUILD OK"
         }
-        unsuccessful {
+        failure {
             echo "BUILD NON OK"
         }
     }
