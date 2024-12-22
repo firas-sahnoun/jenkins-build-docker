@@ -73,7 +73,7 @@ pipeline {
                     echo '🚀 Démarrage du conteneur HTTPD...'
                     sh '''
                     docker run -d \
-                        --name webserver \
+                        --name pipeline-webserver \
                         -p 8000:80 \
                         imejri/httpd-issam:v1.1
                     '''
