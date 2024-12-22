@@ -39,6 +39,14 @@ pipeline {
                 }
             }
         }//stage
+
+        stage ('Tag image') { 
+            steps {
+                script {
+                  sh 'docker tag alpine-issam:v1.1 imejri/alpine-issam:v1.1'
+                }
+            }
+        }//stage
     }
     post {
         success {
