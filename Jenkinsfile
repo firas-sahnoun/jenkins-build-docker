@@ -34,7 +34,7 @@ pipeline {
         stage('Build image') { 
             steps {
                 script {
-                    sh 'docker build -t alpine-issam:v1.1 .'
+                    sh 'docker build -t httpd-issam:v1.1 .'
                     sh 'docker images'
                 }
             }
@@ -44,7 +44,7 @@ pipeline {
         stage('Tag image') { 
             steps {
                 script {
-                    sh 'docker tag alpine-issam:v1.1 imejri/alpine-issam:v1.1'
+                    sh 'docker tag httpd-issam:v1.1 imejri/httpd-issam:v1.1'
                     sh 'docker images'
                 }
             }
@@ -61,7 +61,7 @@ pipeline {
             post {
                 success {
                     script {
-                        sh 'docker push imejri/alpine-issam:v1.1'
+                        sh 'docker push imejri/httpd-issam:v1.1'
                     }
                 }
             }
