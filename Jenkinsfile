@@ -12,10 +12,18 @@ pipeline {
                     echo 'test d\'un simple pipeline'
                     echo "test post condition >> /test/issue"
                     sh 'rmdir /test'
-                }
+                } // script
                 
-            }
+            } // steps
 
+        }// stage
+
+        stage ('print Dockerfile') {
+            steps {
+                script {
+                    cat Dockerfile
+                }
+            }
         }
     }
     post {
