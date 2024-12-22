@@ -6,15 +6,6 @@ pipeline {
     }
 
     stages {
-        // 📌 Étape 1 : Affichage d'un message simple
-        stage('Print hello') {
-            steps {
-                script {
-                    echo 'hello from Jenkins pipeline'
-                    echo 'test d\'un simple pipeline'
-                }
-            }
-        }
 
         // 📌 Étape 2 : Affichage du Dockerfile
         stage('Print Dockerfile') {
