@@ -1,9 +1,7 @@
 
 pipeline {
     agent {
-        label {
-            'linux-docker'
-        }
+        label 'linux-docker'
     }
 
     stages {
