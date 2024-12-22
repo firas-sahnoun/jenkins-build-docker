@@ -1,3 +1,3 @@
 FROM alpine:latest
 USER root
-RUN mkdir /issam
+RUN mkdir -p /issam/jenkins
