@@ -61,7 +61,7 @@ pipeline {
         stage('Run HTTPD container') {
             steps {
                 script {
-                    echo '🚀 Démarrage du conteneur HTTPD...'
+                    echo '🚀 Démarrage du conteneur HTTPD..'
                     sh '''
                     docker run -d \
                         --name pipeline-webserver \
